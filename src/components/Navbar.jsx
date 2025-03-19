@@ -14,6 +14,7 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0, rotateX: 0, rotateY: 0 }}
             transition={{ duration: 1.5, ease: 'easeOut' }}
         >
+            {motion}
             {/* Portfolio Logo */}
             <motion.h1
                 className="font-sans text-4xl italic font-extrabold text-white"

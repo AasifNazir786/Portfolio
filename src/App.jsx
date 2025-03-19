@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import HomePage from './pages/HomePage'
-import ProjectSection from './pages/Projects'
+import ProjectPage from './pages/ProjectsPage'
 
 const App = () => {
   return (
@@ -9,7 +9,8 @@ const App = () => {
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='home' element={<HomePage />}/>
-        <Route path='projects' element={<ProjectSection />} />
+        <Route path='projects' element={<ProjectPage />} />
+        {/* <Route path='card' element={<Card />} /> */}
       </Routes>
     </Router>
     
