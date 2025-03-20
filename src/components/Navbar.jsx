@@ -4,7 +4,14 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
-    const navLinks = ['Home', 'About', 'Skills', 'Projects', 'Services', 'Contact'];
+    const navLinks = [
+        {page: 'Home', link: '/home'},
+        {page: 'About', link: '/about'},
+        {page: 'Skills', link: '/skills'},
+        {page: 'Projects', link: '/projects'},
+        {page: 'Services', link: '/services'},
+        {page: 'Contact', link: '/contact'}
+    ];
     const navigate = useNavigate();
 
     return (
@@ -44,9 +51,9 @@ const Navbar = () => {
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: index * 0.1 }}
-                        onClick={() => navigate('/projects')}
+                        onClick={() => navigate(item.link)}
                     >
-                        {item}
+                        {item.page}
                     </motion.li>
                 ))}
             </motion.ul>
