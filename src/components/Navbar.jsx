@@ -7,10 +7,9 @@ const Navbar = () => {
     const navLinks = [
         {page: 'Home', link: '/home'},
         {page: 'About', link: '/about'},
-        {page: 'Skills', link: '/skills'},
         {page: 'Projects', link: '/projects'},
         {page: 'Services', link: '/services'},
-        {page: 'Contact', link: '/contact'}
+        {page: 'Contact', link: '/contacts'}
     ];
     const navigate = useNavigate();
 
@@ -37,7 +36,7 @@ const Navbar = () => {
 
             {/* Navigation Links */}
             <motion.ul
-                className="hidden m-4 space-x-12 font-mono text-lg md:flex"
+                className="hidden m-4 space-x-8 font-mono text-lg md:flex"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: 'easeOut', delay: 0.5 }}
@@ -45,15 +44,22 @@ const Navbar = () => {
                 {navLinks.map((item, index) => (
                     <motion.li
                         key={item}
-                        className="transition-all duration-300 cursor-pointer hover:text-blue-400 hover:underline underline-offset-8"
+                        className="cursor-pointer hover:bg-gray-700 px-3 py-2 rounded-full hover:shadow-lg transition-all duration-300"
                         whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: index * 0.1 }}
                         onClick={() => navigate(item.link)}
                     >
-                        {item.page}
+                        <motion.span
+                            className="text-white"
+                            whileHover={{ scale: 1.1, textShadow: "0px 0px 10px rgba(255, 255, 255, 0.5)" }}
+                            transition={{ duration: 0.3 }}
+                            whileTap={{ scale: 0.9 }}
+                        >
+                            {item.page}
+                        </motion.span>
+                        
                     </motion.li>
                 ))}
             </motion.ul>
@@ -61,7 +67,6 @@ const Navbar = () => {
             {/* Download CV Button */}
             <motion.button
                 className="px-6 py-2 text-white transition-all duration-300 rounded-full shadow-lg bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700"
-                onClick={() => console.log("CV downloaded")}
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1, ease: 'easeOut', delay: 0.8 }}

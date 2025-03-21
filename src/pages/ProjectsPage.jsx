@@ -72,7 +72,7 @@ const projects = [
 
 const ProjectPage = () => {
   return (
-    <div className="bg-[#0d1b2a] text-white py-20 mb-6 px-6 sm:px-10 min-h-screen">
+    <div className="bg-[#0d1b2a] text-white py-20 px-6 sm:px-10 min-h-screen">
       {motion}
       <motion.h2
         initial={{ opacity: 0, y: -200, x: -100, rotateX: 45, rotateY: 40 }}
