@@ -44,7 +44,7 @@ const Navbar = () => {
                 {navLinks.map((item, index) => (
                     <motion.li
                         key={item}
-                        className="cursor-pointer hover:bg-gray-700 px-3 py-2 rounded-full hover:shadow-lg transition-all duration-300"
+                        className="px-4 py-2 transition-all duration-300 rounded-full cursor-pointer hover:bg-blue-500 hover:shadow-lg"
                         whileHover={{ scale: 1.1 }}
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
