@@ -1,86 +1,136 @@
-import { motion } from 'framer-motion';
-import { Download } from 'lucide-react';
-import React from "react";
+import { AnimatePresence, motion } from 'framer-motion';
+import { Download, Menu, X } from 'lucide-react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
-    const navLinks = [
-        {page: 'Home', link: '/home'},
-        {page: 'About', link: '/about'},
-        {page: 'Projects', link: '/projects'},
-        {page: 'Services', link: '/services'},
-        {page: 'Contact', link: '/contacts'}
-    ];
+    const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
+    const navLinks = [
+        { page: 'Home', link: '/home' },
+        { page: 'About', link: '/about' },
+        { page: 'Projects', link: '/projects' },
+        { page: 'Services', link: '/services' },
+        { page: 'Contact', link: '/contacts' }
+    ];
 
     return (
-        <motion.nav
-            className="flex justify-between items-center px-12 py-6 bg-[#0a192f] text-white shadow-lg sticky top-0 z-50"
-            initial={{ opacity: 0, y: -100, rotateX: 45, rotateY: 25 }}
-            animate={{ opacity: 1, y: 0, rotateX: 0, rotateY: 0 }}
-            transition={{ duration: 1.5, ease: 'easeOut' }}
-        >
+        <>
+            {/* Ensure no horizontal scroll */}
+            <style>{`body { overflow-x: hidden; }`}</style>
             {motion}
-            {/* Portfolio Logo */}
-            <motion.h1
-                className="font-sans text-4xl italic font-extrabold text-white"
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, ease: 'easeOut', delay: 0.3 }}
-            >
-                Port
-                <span className="text-blue-400 drop-shadow-lg shadow-blue-900 font-cursive">
-                    folio
-                </span>
-            </motion.h1>
-
-            {/* Navigation Links */}
-            <motion.ul
-                className="hidden m-4 space-x-8 font-mono text-lg md:flex"
-                initial={{ opacity: 0, y: -20 }}
+            <motion.nav
+                className="flex justify-between items-center px-6 md:px-12 py-4 bg-[#0a192f] text-white shadow-lg fixed top-0 z-50 w-full overflow-hidden"
+                initial={{ opacity: 0, y: -50 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: 'easeOut', delay: 0.5 }}
+                transition={{ duration: 1 }}
             >
-                {navLinks.map((item, index) => (
-                    <motion.li
-                        key={item}
-                        className="px-4 py-2 transition-all duration-300 rounded-full cursor-pointer hover:bg-blue-500 hover:shadow-lg"
-                        whileHover={{ scale: 1.1 }}
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                        onClick={() => navigate(item.link)}
-                    >
-                        <motion.span
-                            className="text-white"
-                            whileHover={{ scale: 1.1, textShadow: "0px 0px 10px rgba(255, 255, 255, 0.5)" }}
+                {/* Logo */}
+                <motion.h1
+                    className="text-3xl italic font-bold lg:text-5xl md:text-4xl"
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8, delay: 0.3 }}
+                >
+                    Port<span className="text-blue-400">folio</span>
+                </motion.h1>
+
+                {/* Desktop Navigation */}
+                <motion.ul
+                    className="hidden space-x-2 text-lg lg:space-x-6 md:flex"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
+                >
+                    {navLinks.map((item) => (
+                        <motion.li
+                            key={item.page}
+                            className="px-3 py-2 transition duration-300 rounded-full cursor-pointer hover:bg-blue-500"
+                            whileHover={{ scale: 1.1 }}
                             transition={{ duration: 0.3 }}
-                            whileTap={{ scale: 0.9 }}
+                            onClick={() => navigate(item.link)}
                         >
                             {item.page}
-                        </motion.span>
-                        
-                    </motion.li>
-                ))}
-            </motion.ul>
+                        </motion.li>
+                    ))}
+                </motion.ul>
 
-            {/* Download CV Button */}
-            <motion.button
-                className="px-6 py-2 text-white transition-all duration-300 rounded-full shadow-lg bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700"
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, ease: 'easeOut', delay: 0.8 }}
-            >
+                {/* Download CV Button */}
                 <motion.a
-                    className='flex space-x-4'
-                    whileTap={{ scale: 0.9 }}
-                    href='https://drive.google.com/file/d/1PokX-nCeTHXwnhxIV-5FScfXJYq092XU/view?usp=drive_link'
+                    href="https://drive.google.com/file/d/1PokX-nCeTHXwnhxIV-5FScfXJYq092XU/view?usp=drive_link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex px-2 py-2 transition duration-300 rounded-full shadow-lg bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700"
                 >
-                    <p>Download CV</p>
-                    {<Download size={20}/>}
+                    <p className='text-sm'>Download CV</p>
+                    <Download size={20} className="ml-2" />
                 </motion.a>
-            </motion.button>
-        </motion.nav>
+
+                {/* Mobile Menu Button */}
+                <button className="md:hidden" onClick={() => setIsOpen(true)}>
+                    <Menu size={28} />
+                </button>
+
+                {/* Mobile Menu Overlay */}
+                <AnimatePresence>
+                    {isOpen && (
+                        <>
+                            {/* Background Overlay */}
+                            {isOpen && (
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                    transition={{ duration: 0.3 }}
+                                    className="fixed inset-0 z-40 md:hidden bg-black/50 backdrop-blur-sm"
+                                onClick={() => setIsOpen(false)}
+                                />
+                            )}
+
+                            {/* Side Menu */}
+                            <motion.div
+                                initial={{ x: "-100%", scale: 0.9 }}
+                                animate={{ x: 0, scale: 1 }}
+                                exit={{ x: "-100%", scale: 0.9 }}
+                                transition={{ duration: 0.4, ease: "easeInOut" }}
+                                className="md:hidden fixed top-0 left-0 h-full w-4/5 max-w-xs bg-[#0a192f] text-white shadow-lg z-50 p-6 overflow-y-auto rounded-r-3xl"
+                            >
+                                {/* Header */}
+                                <div className="flex items-center justify-between pb-4 mb-6 border-b border-gray-700">
+                                    <motion.h1
+                                        className="text-3xl italic font-extrabold"
+                                        initial={{ opacity: 0, x: -30 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ duration: 0.6, delay: 0.2 }}
+                                    >
+                                        Port<span className="text-blue-400">folio</span>
+                                    </motion.h1>
+                                    <button onClick={() => setIsOpen(false)} className="text-white transition hover:text-red-500">
+                                        <X size={28} />
+                                    </button>
+                                </div>
+
+                                {/* Navigation Links */}
+                                <ul className="space-y-4">
+                                    {navLinks.map((item, index) => (
+                                        <motion.li
+                                            key={item.page}
+                                            className="px-5 py-3 transition-all duration-500 rounded-lg shadow-md cursor-pointer hover:text-blue-400 hover:scale-105 hover:bg-gray-800/50 bg-gray-800/30"
+                                            onClick={() => { navigate(item.link); setIsOpen(false); }}
+                                            initial={{ opacity: 0, x: -40, y: -10, scale: 0.7, translateY: -20 }}
+                                            animate={{ opacity: 1, x: 0, y: 0, scale: 1, translateY: 0 }}
+                                            transition={{ duration: 1.5, delay: 0.2 * index, ease: "easeInOut" }}
+                                        >
+                                            {item.page}
+                                        </motion.li>
+                                    ))}
+                                </ul>
+                            </motion.div>
+                        </>
+                    )}
+                </AnimatePresence>
+            </motion.nav>
+        </>
     );
 };
 

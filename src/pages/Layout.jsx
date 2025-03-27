@@ -4,11 +4,11 @@ import Navbar from '../components/Navbar';
 
 const Layout = ({ children }) => {
     return (
-        <>
-        <Navbar />
-        <main className="min-h-screen">{children}</main>
-        <Footer />
-        </>
+        <div>
+            <Navbar />
+            <main className="min-h-screen">{children}</main>
+            <Footer />
+        </div>
     );
 };
 
