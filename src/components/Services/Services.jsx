@@ -39,7 +39,7 @@ const services = [
 const Services = () => {
     return (
         // Main Container
-        <section className="py-12 bg-gray-800">
+        <section className="py-12 bg-gray-800 pt-28">
             {motion}
             {/* Heading Section.... */}
             <div className="mb-16 text-center">
