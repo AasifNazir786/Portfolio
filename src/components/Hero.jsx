@@ -2,14 +2,14 @@ import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { FaFacebook, FaGithub, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import image1 from "../assets/portfolio.png";
+import image1 from '../assets/Portfolio.png';
 
 const icons = [
     { icon: FaFacebook, link: "https://facebook.com" },
     { icon: FaTwitter, link: "https://twitter.com" },
     { icon: FaInstagram, link: "https://instagram.com" },
-    { icon: FaLinkedin, link: "https://linkedin.com" },
-    { icon: FaGithub, link: "https://github.com" }
+    { icon: FaLinkedin, link: "https://www.linkedin.com/in/aasif-nazir-shah-94a811322/" },
+    { icon: FaGithub, link: "https://github.com/AasifNazir786/AasifNazir786" }
 ];
 
 const Hero = () => {
@@ -44,7 +44,7 @@ const Hero = () => {
     }, [charIndex, isDeleting, roleIndex]);
 
     return (
-        <div className="bg-[#0d1b2a] relative text-white min-h-screen flex flex-col md:flex-row items-center justify-center px-6 md:px-12 pt-16 pb-16">
+        <div className="bg-[#0d1b2a] relative text-white min-h-screen flex flex-col md:flex-row items-center justify-center px-6 md:px-12 pt-28 pb-16">
             {/* Profile Image */}
             <motion.div
                 initial={{ opacity: 0, scale: 0.8, rotate: -10 }}

@@ -15,7 +15,9 @@ const techStack = [
     { name: "MySQL", img: "https://cdn-icons-png.flaticon.com/512/5968/5968313.png" },
     { name: "ReactJS", img: "https://cdn-icons-png.flaticon.com/512/1126/1126012.png" },
     { name: "Vercel", img: "https://assets.vercel.com/image/upload/v1662130559/nextjs/Icon_dark_background.png" },
-    { name: "Tailwind CSS", img: "https://cdn.worldvectorlogo.com/logos/tailwind-css-2.svg" }
+    { name: "Tailwind CSS", img: "https://cdn.worldvectorlogo.com/logos/tailwind-css-2.svg" },
+    { name: "Git", img: "https://cdn-icons-png.flaticon.com/512/2111/2111288.png" },
+    { name: "Microservices", img: "https://cdn-icons-png.flaticon.com/512/5969/5969059.png" } // or any relevant image/icon you prefer
 ];
 
 export default function TechStack() {
